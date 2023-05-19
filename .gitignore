@@ -1,0 +1,4 @@
+/all.log
+/.idea/
+/cmd/otter-dingtalk/otter-dingtalk
+*.log
