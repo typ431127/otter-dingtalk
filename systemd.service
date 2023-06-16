@@ -1,0 +1,17 @@
+[Unit]
+Description=otter-dingtalk
+Documentation=otter-dingtalk
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/otter-alert/otter-dingtalk  --zk 192.168.100.x:2181 \
+                  --mysql_host xxxx:3306 \
+                  --mysql_pass 'xxxx' \
+                  --token xxxxxxxxxxxxxxxxxxxxxxxxx \
+                  --secret xxxxxxxxxxxxxxxxxxxxxx \
+                  -c 29 -c 30 -c 25 -c 31
+Restart=on-failure
+[Install]
+WantedBy=multi-user.target
