@@ -11,12 +11,12 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "otter-dingding",
-	Short: "otter-dingding",
-	Long:  `otter-dingding`,
+	Use:   "otter-dingtalk 报警工具",
+	Short: "otter-dingtalk",
+	Long:  `otter-dingtalk`,
 	Run: func(cmd *cobra.Command, args []string) {
 		core.Init()
-		otter.CheckAlarms()
+		otter.MonitoringPatrol()
 	},
 }
 
@@ -28,6 +28,10 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(&global.ZKADDR, "zk", "127.0.0.1:2181", "Zookeeper connection address")
 	rootCmd.PersistentFlags().StringVar(&global.DINGTOKEN, "token", "", "钉钉机器人token")
 	rootCmd.PersistentFlags().StringVar(&global.DINGSECRTE, "secret", "", "钉钉机器人secret")
+	rootCmd.PersistentFlags().StringVar(&global.OTTER_URL, "otter-url", "", "otter 地址")
+	rootCmd.PersistentFlags().StringVar(&global.OTTER_USERNAME, "otter-username", "", "otter 账号")
+	rootCmd.PersistentFlags().StringVar(&global.OTTER_PASSWORD, "otter-password", "", "otter 密码")
+	rootCmd.PersistentFlags().StringVar(&global.ENV, "env", "dev", "环境标识")
 	rootCmd.PersistentFlags().StringArrayVarP(&global.CHANNEL, "channel", "c", []string{"28"}, "指定监控的channelId,all为全部")
 	rootCmd.PersistentFlags().DurationVarP(&global.REFRESHTIME, "refresh", "", time.Second*60, "刷新间隔时间")
 	rootCmd.MarkPersistentFlagRequired("token")

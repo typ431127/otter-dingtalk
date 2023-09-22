@@ -1,17 +1,23 @@
 [Unit]
 Description=otter-dingtalk
-Documentation=otter-dingtalk
+Documentation=otter-dingtalk https://github.com/typ431127/otter-dingtalk
 After=network.target
 
 [Service]
 Type=simple
 User=root
-ExecStart=/usr/local/otter-alert/otter-dingtalk  --zk 192.168.100.x:2181 \
-                  --mysql_host xxxx:3306 \
-                  --mysql_pass 'xxxx' \
-                  --token xxxxxxxxxxxxxxxxxxxxxxxxx \
-                  --secret xxxxxxxxxxxxxxxxxxxxxx \
-                  -c 29 -c 30 -c 25 -c 31
+ExecStart=/usr/local/otter-alert/otter-dingtalk  --zk 192.168.100.xxx:2181 \
+                  --mysql_host 192.168.100.xxxxx:3306 \
+                  --mysql_pass 'xxxxxxxxxxxx' \
+                  --mysql_db 'otter' \
+                  --token xxxxxxxxxxxxxxxx  \
+                  --secret xxxxxxxxxxxxxx \
+                  --refresh 5m \
+                  --env 开发环境 \
+                  --otter-url http://192.168.100.xxx:8080 \
+                  --otter-username admin \
+                  --otter-password xxxxx \
+                  -c 29 -c 30 -c 31 -c 33 -c 35 -c 36 -c 38
 Restart=on-failure
 [Install]
 WantedBy=multi-user.target
